@@ -8,7 +8,7 @@
 import Observation
 import Foundation
 
-@Observable
+@Observable @MainActor
 class FilmDetailsViewModel {
     var people: [Person] = []
     
