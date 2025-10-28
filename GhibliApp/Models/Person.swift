@@ -25,7 +25,6 @@ struct Person: Codable, Identifiable {
     }
 }
 
-
 import Playgrounds
 
 #Playground {

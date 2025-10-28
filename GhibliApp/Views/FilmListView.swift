@@ -8,18 +8,34 @@
 import SwiftUI
 
 struct FilmListView: View {
-    @State private var viewModel: FilmsViewModel = FilmsViewModel()
+    var viewModel: FilmsViewModel
     
     var body: some View {
-        List(viewModel.films) {
-            Text($0.title)
+        NavigationStack {
+            switch viewModel.state {
+                case .idle:
+                    Text("No Films yet")
+                case .loading:
+                    ProgressView {
+                        Text("Loading...")
+                    }
+                case .loaded(let films):
+                    List(films) {
+                        Text($0.title)
+                    }
+                case .error(let error):
+                    Text(error)
+                        .foregroundStyle(.pink)
+            }
         }
         .task {
-            await viewModel.fetchFilms()
+            await viewModel.fetch()
         }
     }
 }
 
 #Preview {
-    FilmListView()
+    @Previewable @State var viewModel = FilmsViewModel(service: MockAPIService())
+    
+    FilmListView(viewModel: viewModel)
 }
