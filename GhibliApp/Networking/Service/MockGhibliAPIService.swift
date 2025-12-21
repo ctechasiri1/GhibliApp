@@ -29,6 +29,7 @@ struct MockGhibliAPIService: GhibliAPIService {
         }
     }
     
+    // MARK: For protocol conformance
     func fetchFilms() async throws -> [Film] {
         let data = try loadSampleData()
         return data.films
@@ -37,5 +38,11 @@ struct MockGhibliAPIService: GhibliAPIService {
     func fetchPerson(from URLString: String) async throws -> Person {
         let data = try loadSampleData()
         return data.people.first!
+    }
+    
+    // MARK: For preview/testing
+    func fetchFilm() -> Film {
+        let data = try! loadSampleData()
+        return data.films.first!
     }
 }
