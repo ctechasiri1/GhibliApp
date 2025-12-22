@@ -1,5 +1,5 @@
 //
-//  FilmListViewModel.swift
+//  FilmsViewModel.swift
 //  GhibliApp
 //
 //  Created by Chiraphat Techasiri on 12/14/25.
@@ -9,7 +9,7 @@ import Observation
 import Foundation
 
 @Observable
-class FilmListViewModel {
+class FilmsViewModel {
     enum ScreenState: Equatable {
         case idle
         case loading
