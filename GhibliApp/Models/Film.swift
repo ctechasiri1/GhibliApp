@@ -38,7 +38,7 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
         let bannerURL = URL.convertAssetImage(named: "bannerImage")
         let posterURL = URL.convertAssetImage(named: "posterImage")
         
-        return Film(id: "id",
+        return Film(id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
                     title: "My Neighbor Totoro",
                     description: "Two sisters encounter friendly forest spirits in rural Japan.",
                     director: "Hayao Miyazaki",

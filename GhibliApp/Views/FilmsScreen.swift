@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FilmsScreen: View {
+    let favoritesViewModel: FavoritesViewModel
     let filmsViewModel: FilmsViewModel
     
     var body: some View {
@@ -22,7 +23,7 @@ struct FilmsScreen: View {
                         Text("Loading...")
                     }
                 case .loaded(let films):
-                    FilmListView(films: films)
+                    FilmListView(favoritesViewModel: favoritesViewModel, films: films)
                 case .error(let error):
                     Text(error)
                         .foregroundStyle(Color.red)
@@ -37,5 +38,5 @@ struct FilmsScreen: View {
 }
 
 #Preview {
-    FilmsScreen(filmsViewModel: FilmsViewModel(service: MockGhibliAPIService()))
+    FilmsScreen(favoritesViewModel: FavoritesViewModel(service: MockFavoriteStorage()), filmsViewModel: FilmsViewModel(service: MockGhibliAPIService()))
 }
