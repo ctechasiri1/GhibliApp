@@ -1,23 +1,16 @@
 //
-//  FilmsViewModel.swift
+//  SearchFilmsViewModel.swift
 //  GhibliApp
 //
-//  Created by Chiraphat Techasiri on 12/14/25.
+//  Created by Chiraphat Techasiri on 12/23/25.
 //
 
 import Observation
 import Foundation
 
 @Observable
-class FilmsViewModel {
-    enum ScreenState: Equatable {
-        case idle
-        case loading
-        case loaded([Film])
-        case error(String)
-    }
-    
-    var state: ScreenState = .idle
+class SearchFilmsViewModel {
+    var state: ScreenState<[Film]> = .idle
     
     private let service: GhibliAPIService
     
@@ -25,13 +18,13 @@ class FilmsViewModel {
         self.service = service
     }
     
-    func fetch() async {
-        guard state == .idle else { return }
+    func fetch(for searchTerm: String) async {
+        guard !state.isLoading || state.error != nil  else { return }
         
         state = .loading
         
         do {
-            let films = try await service.fetchFilms()
+            let films = try await service.searchFilms(for: searchTerm)
             state = .loaded(films)
         } catch let error as APIError {
             self.state = .error(error.errorDescription ?? "unknown error")
@@ -46,4 +39,5 @@ class FilmsViewModel {
         filmsViewModel.state = .loaded([Film.example, Film.favoritesExample])
         return filmsViewModel
     }
+    
 }

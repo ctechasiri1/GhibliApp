@@ -10,14 +10,7 @@ import Foundation
 
 @Observable
 class FilmDetailsViewModel {
-    enum ScreenState: Equatable {
-        case idle
-        case loading
-        case loaded([Person])
-        case error(String)
-    }
-    
-    var state: ScreenState = .idle
+    var state: ScreenState<[Person]> = .idle
     
     private let service: GhibliAPIService
     
@@ -26,7 +19,7 @@ class FilmDetailsViewModel {
     }
     
     func fetch(for film: Film) async {
-        guard state != .loading else { return }
+        guard !state.isLoading else { return }
         
         state = .loading
         

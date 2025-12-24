@@ -32,8 +32,14 @@ struct DefaultGhibiliAPIService: GhibliAPIService {
         return try await fetch(from: url, type: [Film].self)
     }
     
+    func searchFilms(for searchTerm: String) async throws -> [Film] {
+        let allFilms = try await fetchFilms()
+        return allFilms.filter { film in
+            film.title.localizedStandardContains(searchTerm)
+        }
+    }
+    
     func fetchPerson(from URLString: String) async throws -> Person {
         return try await fetch(from: URLString, type: Person.self)
     }
-    
 }

@@ -10,4 +10,5 @@ import Foundation
 protocol GhibliAPIService: Sendable {
     func fetchFilms() async throws -> [Film]
     func fetchPerson(from URLString: String) async throws -> Person
+    func searchFilms(for searchTerm: String) async throws -> [Film]
 }
