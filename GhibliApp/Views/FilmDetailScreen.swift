@@ -13,6 +13,10 @@ struct FilmDetailScreen: View {
     
     @State private var viewModel = FilmDetailsViewModel()
     
+    var isFavorite: Bool {
+        favoritesViewModel.isFavorite(id: film.id)
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -46,6 +50,9 @@ struct FilmDetailScreen: View {
                 }
                 .padding()
             }
+        }
+        .toolbar {
+            FavoriteButton(filmID: film.id, favoritesViewModel: favoritesViewModel)
         }
         .task {
             await viewModel.fetch(for: film)

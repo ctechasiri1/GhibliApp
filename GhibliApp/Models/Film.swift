@@ -39,16 +39,34 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
         let posterURL = URL.convertAssetImage(named: "posterImage")
         
         return Film(id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
-                    title: "My Neighbor Totoro",
-                    description: "Two sisters encounter friendly forest spirits in rural Japan.",
+                    title: "Castle in the Sky",
+                    description: "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa.",
                     director: "Hayao Miyazaki",
-                    producer: "Toru Hara",
-                    releaseYear: "1988",
-                    duration: "86",
-                    score: "93",
+                    producer: "Isao Takahata",
+                    releaseYear: "1986",
+                    duration: "124",
+                    score: "95",
                     image: posterURL?.absoluteString ?? "",
                     bannerImage: bannerURL?.absoluteString ?? "",
-                    people: ["https://ghibliapi.vercel.app/people/598f7048-74ff-41e0-92ef-87dc1ad980a9"])
+                    people: ["https://ghibliapi.vercel.app/people/267649ac-fb1b-11eb-9a03-0242ac130003"])
+    }
+    
+    static var favoritesExample: Film {
+    //MockGhibliAPIService().fetchFilm()
+        let bannerURL = URL.convertAssetImage(named: "bannerImage2")
+        let posterURL = URL.convertAssetImage(named: "posterImage2")
+        
+        return Film(id: "12cfb892-aac0-4c5b-94af-521852e46d6a",
+                    title: "Grave of the Fireflies",
+                    description: "In the latter part of World War II, a boy and his sister, orphaned when their mother is killed in the firebombing of Tokyo, are left to survive on their own in what remains of civilian life in Japan.",
+                    director: "Isao Takahata",
+                    producer: "Toru Hara",
+                    releaseYear: "1988",
+                    duration: "89",
+                    score: "97",
+                    image: posterURL?.absoluteString ?? "",
+                    bannerImage: bannerURL?.absoluteString ?? "",
+                    people: ["https://ghibliapi.vercel.app/people/267649ac-fb1b-11eb-9a03-0242ac130003"])
     }
 }
 

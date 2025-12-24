@@ -26,11 +26,7 @@ struct FilmListView: View {
 private struct FilmRow: View {
     let film: Film
     let favoritesViewModel: FavoritesViewModel
-    
-    var isFavorite: Bool {
-        favoritesViewModel.isFavorite(id: film.id)
-    }
-    
+
     var body: some View {
         HStack(alignment: .top) {
             FilmImageView(urlString: film.image)
@@ -43,14 +39,9 @@ private struct FilmRow: View {
                     
                     Spacer()
                     
-                    Button {
-                        favoritesViewModel.toggleFavorites(forID: film.id)
-                    } label: {
-                        Image(systemName: isFavorite ? "heart.fill" : "heart")
-                            .foregroundStyle(isFavorite ? Color.pink : Color.gray)
-                    }
-                    .buttonStyle(.plain)
-                    .controlSize(.large)
+                    FavoriteButton(filmID: film.id, favoritesViewModel: favoritesViewModel)
+                        .buttonStyle(.plain)
+                        .controlSize(.large)
                 }
                 .padding(.bottom, 5)
                 
@@ -71,7 +62,7 @@ private struct FilmRow: View {
     @State @Previewable var favoritesViewModel: FavoritesViewModel = FavoritesViewModel(service: MockFavoriteStorage())
     
     NavigationStack {
-        FilmListView(favoritesViewModel: favoritesViewModel, films: [Film.example])
+        FilmListView(favoritesViewModel: favoritesViewModel, films: [Film.example, Film.favoritesExample])
     }
     .task {
         favoritesViewModel.load()
