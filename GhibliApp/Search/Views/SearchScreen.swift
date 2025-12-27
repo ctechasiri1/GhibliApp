@@ -23,7 +23,8 @@ struct SearchScreen: View {
         NavigationStack {
             switch searchFilmsViewModel.state {
             case .idle:
-                Text("Show search here")
+                Text("Your search results will be shown here.")
+                    .foregroundStyle(.secondary)
             case .loading:
                 ProgressView()
             case .loaded(let films):
@@ -35,12 +36,6 @@ struct SearchScreen: View {
         }
         .searchable(text: $text)
         .task(id: text) {
-            /// changes in text will run the task
-            try? await Task.sleep(for: .milliseconds(500))
-            
-            /// if task is not cancelled continue running, otherwise return
-            guard !Task.isCancelled else { return }
-            
             await searchFilmsViewModel.fetch(for: text)
         }
     }

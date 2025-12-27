@@ -7,6 +7,7 @@
 
 import Foundation
 
+nonisolated // opted out of @MainActor
 struct Film: Codable, Identifiable, Equatable, Hashable {
     let id: String
     let title: String
@@ -33,6 +34,7 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
     }
     
     // MARK: Preview
+    @MainActor
     static var example: Film {
     //MockGhibliAPIService().fetchFilm()
         let bannerURL = URL.convertAssetImage(named: "bannerImage")
@@ -51,6 +53,7 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
                     people: ["https://ghibliapi.vercel.app/people/267649ac-fb1b-11eb-9a03-0242ac130003"])
     }
     
+    @MainActor
     static var favoritesExample: Film {
     //MockGhibliAPIService().fetchFilm()
         let bannerURL = URL.convertAssetImage(named: "bannerImage2")

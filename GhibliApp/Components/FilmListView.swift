@@ -45,11 +45,11 @@ private struct FilmRow: View {
                 }
                 .padding(.bottom, 5)
                 
-                Text(film.director)
+                Text("Directed by \(film.director)")
                     .font(.subheadline)
                     .foregroundStyle(Color.secondary)
                 
-                Text("Released:\(film.releaseYear)")
+                Text("Released: \(film.releaseYear)")
                     .font(.caption)
                     .foregroundStyle(Color.secondary)
             }

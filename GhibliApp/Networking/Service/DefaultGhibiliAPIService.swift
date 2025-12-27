@@ -35,7 +35,7 @@ struct DefaultGhibiliAPIService: GhibliAPIService {
     func searchFilms(for searchTerm: String) async throws -> [Film] {
         let allFilms = try await fetchFilms()
         return allFilms.filter { film in
-            film.title.localizedStandardContains(searchTerm)
+            film.title.localizedCaseInsensitiveContains(searchTerm)
         }
     }
     

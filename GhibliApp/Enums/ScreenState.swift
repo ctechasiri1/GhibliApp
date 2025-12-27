@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ScreenState<T> {
+enum ScreenState<T: Equatable>: Equatable {
     case idle
     case loading
     case loaded(T)

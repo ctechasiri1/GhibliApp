@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: This is for the previews only
 struct MockGhibliAPIService: GhibliAPIService {
     private struct SampleData: Decodable {
         let films: [Film]
@@ -43,7 +44,7 @@ struct MockGhibliAPIService: GhibliAPIService {
     func searchFilms(for searchTerm: String) async throws -> [Film] {
         let allFilms = try await fetchFilms()
         return allFilms.filter { film in
-            film.title.localizedStandardContains(searchTerm)
+            film.title.localizedCaseInsensitiveContains(searchTerm)
         }
     }
     
